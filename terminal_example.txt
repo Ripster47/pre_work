@@ -1,0 +1,26 @@
+1/7/19 Week 1 - Day 1
+
+cd = change directory
+mkdir = make new directory (folder)
+ls = list whats inside current folder
+cd .. = move up a level in a directory
+
+Flags:
+
+ls -a = reveal hidden files in a folder
+Ls -l = detailed breakdown of all files/folders in terminal
+Ls -GF = changes colors to determine different file types easier
+Rm = remove a file
+-f = remove by force
+-rf = recursive force don't use this! It will delete a folder and anything inside or connected to it. Nasty if used deep in the terminal.
+
+Hotkeys:
+
+CMD + L = highlight a line
+CMD + CTRL + up arrow/down arrow = Move an entire line
+CMD + B = run your code right inside sublime text
+CMD + Z = Undo
+CMD + D = select multiple instances of the same variable/word
+
+
+
