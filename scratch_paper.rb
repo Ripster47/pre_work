@@ -1,66 +1,53 @@
-# number = 10000
+bloggers_information = [
+                        [["James Spader"],["214.555.1357"],["123 N South St."],["Chicago"],["il"],["60645"],["@samspade"]],
+                        [["Jenny Forrest"],["Schamberg"],["il"],["312-555-2244"],["@imaboat"]],
+                        [["Jimmy Stuart"],["@getyerwings"],["313 555 9865"],["1128 Alameda Ave"],["Glendale"],["CA"],["92606"]],
+                        [["Mountain Joe"],["3035550021"],["@campfire"]],
+                        [["Mr. Henderson"],["312-555-9224"],["Chicago"],["il"],["60647"],["@hairy"]],
+                        [["Nerf Herder"],["123 N South St."],["Chicago"],["il"],["60645"],["@blueharvest"],["310.555.2234"]]
+                      ]
 
-# string_num = number.to_s
-
-# p string_num.length
-
-# new_string = number.to_s.insert( -4, "," )
-
-# p new_string
+def collect_contact_info(data)
 
 
-def add_commas(number)
-empty_string = ""
-  new_string = number.to_s.length
-  new_string.times do |index|
-    p index
-    if index % 3 == 1 && index != 0
-      empty_string << "," + number.to_s[index]
-      p "*" * 50
-    else
-      empty_string << number.to_s[index]
-    end
+contacts = []
+
+  data.length.times do |index|
     
+  contacts << data[index][0]
+  
   end
-  p empty_string
+
+p contacts.flatten
 end
 
-add_commas(5000000000000000000000)
 
-# add_commas(10000000)
-# add_commas(45000)
-# add_commas(5000000000000)
-# add_commas("abcdefghijklmnop")
-# add_commas(0.0009)
-# add_commas(45000)
-
-# add_commas(5)
-
-# count = 1
-#   new_string = number.to_s
+collect_contact_info(bloggers_information)
 
 
+def twitter_handle(data_2)
+twitter_array = []
 
 
+data_2.length.times do |index|
+  ind_array = data_2[index]
 
-#   new_string.each_char do |index| 
-#     if count % 4 == 0
-#     count += 1
-#   end
-   
-# p new_string
-# end
+    ind_array.each do |index_2|
+
+      if index_2[0] =~ /\A[@]/
+        twitter_array << index_2
+
+      end
+
+       if index_2[0] =~ \d{3}(.|-|)\d{3}(.|-|)\d{4}
+        twitter_array << index_2
+
+      end
+
+    end
+  end
+p twitter_array.flatten
+end
 
 
-
-# string = "1000000"
-
-
-# total = string.length
-
-# # .insert(-4, ",")
-
-# p total
-
-
-
+twitter_handle(bloggers_information)
