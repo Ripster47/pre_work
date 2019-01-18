@@ -1,53 +1,122 @@
-bloggers_information = [
-                        [["James Spader"],["214.555.1357"],["123 N South St."],["Chicago"],["il"],["60645"],["@samspade"]],
-                        [["Jenny Forrest"],["Schamberg"],["il"],["312-555-2244"],["@imaboat"]],
-                        [["Jimmy Stuart"],["@getyerwings"],["313 555 9865"],["1128 Alameda Ave"],["Glendale"],["CA"],["92606"]],
-                        [["Mountain Joe"],["3035550021"],["@campfire"]],
-                        [["Mr. Henderson"],["312-555-9224"],["Chicago"],["il"],["60647"],["@hairy"]],
-                        [["Nerf Herder"],["123 N South St."],["Chicago"],["il"],["60645"],["@blueharvest"],["310.555.2234"]]
-                      ]
-
-def collect_contact_info(data)
+ class Die
+    attr_reader :sides, :roll_value
 
 
-contacts = []
-
-  data.length.times do |index|
-    
-  contacts << data[index][0]
-  
-  end
-
-p contacts.flatten
-end
-
-
-collect_contact_info(bloggers_information)
-
-
-def twitter_handle(data_2)
-twitter_array = []
-
-
-data_2.length.times do |index|
-  ind_array = data_2[index]
-
-    ind_array.each do |index_2|
-
-      if index_2[0] =~ /\A[@]/
-        twitter_array << index_2
-
-      end
-
-       if index_2[0] =~ \d{3}(.|-|)\d{3}(.|-|)\d{4}
-        twitter_array << index_2
-
-      end
+    def initialize(input_options)
+      @sides = input_options
 
     end
+
+    def die_roll
+      return rand(1..@sides)
+    end
+
+ end
+
+ # die_1 = Die.new(6)
+
+ # p die_1.die_roll
+ class DiceBag < Die
+  attr_reader :dice_quantity, :dice_array, :dice_type
+
+  def initialize(input_options)
+
+    @dice_array = []
+    @dice_quantity = input_options[:number_of_dice]
+    @dice_type = input_options[:dice_type]
+    @dice_quantity.times do |index|
+      @dice_array << Die.new(dice_type)
+    end 
+
   end
-p twitter_array.flatten
+
+  def change_die(number_of_sides)
+    @number_of_sides = number_of_sides
+  end
+
+  def dice_roll_2
+    final_rolls_arr = []
+    @dice_array.each do |die|  
+      final_rolls_arr << die.die_roll
+    end
+    return final_rolls_arr
+  end
+
+  def add_die(side_number)
+    @dice_array << Die.new(side_number)
+  end
+
 end
 
+ dice_bag_1 = DiceBag.new(
+                          number_of_dice: 2,
+                          dice_type: 6 
+                          )
 
-twitter_handle(bloggers_information)
+# pp dice_bag_1
+
+dice_bag_1.add_die(20)
+
+# pp dice_bag_1
+
+dice_bag_1.add_die(8)
+dice_bag_1.add_die(4)
+dice_bag_1.add_die(4)
+dice_bag_1.add_die(20)
+
+# pp dice_bag_1
+
+pp dice_bag_1.dice_roll_2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class DiceCup
+#   attr_reader :storage_array
+
+#   def initialize(array_of_dice)    #[3,4,5,3,3,4,5,6,7] #store an array of dice objects
+      
+#       @storage_array = []
+#       array_of_dice.each do |element|
+        
+#         @storage_array << Die.new(element)
+#       end
+#   end
+
+#   def change_die
+#       new_placement = []
+#       @storage_array.each do |index|
+#         new_placement << index.die_roll
+#       end
+#       return new_placement
+          
+#   end
+
+#     # @contents = []
+#     # @number_of_dice = input_options
+# end
+
+# # Commit 3 - Write Runner Code / Tests
+
+# dicecup = DiceCup.new([1, 2, 3, 100, 200])
+
+# p dicecup.change_die
